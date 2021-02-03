@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,11 +41,14 @@ public class MainActivity extends AppCompatActivity {
         b1 = (Button) findViewById(R.id.b1);
         b2 = (Button) findViewById(R.id.b2);
         b3 = (Button) findViewById(R.id.b3);
-
         t3.setVisibility(View.INVISIBLE);
         t4.setVisibility(View.INVISIBLE);
         t5.setVisibility(View.INVISIBLE);
         t6.setVisibility(View.INVISIBLE);
+        b2.setVisibility(View.INVISIBLE);
+        b3.setVisibility(View.INVISIBLE);
+        e2.setVisibility(View.INVISIBLE);
+        e3.setVisibility(View.INVISIBLE);
 
 
 
@@ -68,51 +69,67 @@ public class MainActivity extends AppCompatActivity {
 
     public void click1(View view) {
         String k = e1.getText().toString();
-        int answer = Integer.parseInt(k);
-        if (answer == sum1) {
-            i1.setImageResource(R.drawable.happy);
-            score++;
+        if (k.matches("")){
+            e1.setError("enter a number");
         }
         else {
-            i1.setImageResource(R.drawable.sad);
+            int answer = Integer.parseInt(k);
+            if (answer == sum1) {
+                i1.setImageResource(R.drawable.happy);
+                score++;
+            } else {
+                i1.setImageResource(R.drawable.sad);
+            }
+            t3.setVisibility(View.VISIBLE);
+            t4.setVisibility(View.VISIBLE);
+            e1.setVisibility(View.INVISIBLE);
+            b1.setVisibility(View.INVISIBLE);
+            e2.setVisibility(View.VISIBLE);
+            b2.setVisibility(View.VISIBLE);
         }
-        t3.setVisibility(View.VISIBLE);
-        t4.setVisibility(View.VISIBLE);
-        e1.setVisibility(View.INVISIBLE);
-        b1.setVisibility(View.INVISIBLE);
     }
 
     public void click2(View view) {
         String k = e2.getText().toString();
-        int answer = Integer.parseInt(k);
-        if (answer == sum2) {
-            i2.setImageResource(R.drawable.happy);
-            score++;
+        if (k.matches("")){
+            e2.setError("This field can not be blank");
         }
-        else {
-            i2.setImageResource(R.drawable.sad);
+        else{
+            int answer = Integer.parseInt(k);
+            if (answer == sum2) {
+                i2.setImageResource(R.drawable.happy);
+                score++;
+            } else {
+                i2.setImageResource(R.drawable.sad);
+            }
+            t5.setVisibility(View.VISIBLE);
+            t6.setVisibility(View.VISIBLE);
+            e2.setVisibility(View.INVISIBLE);
+            b2.setVisibility(View.INVISIBLE);
+            e3.setVisibility(View.VISIBLE);
+            b3.setVisibility(View.VISIBLE);
         }
-        t5.setVisibility(View.VISIBLE);
-        t6.setVisibility(View.VISIBLE);
-        e2.setVisibility(View.INVISIBLE);
-        b2.setVisibility(View.INVISIBLE);
     }
 
-    public void click3(View view) {
+    public void click3(View view) throws InterruptedException {
         String k = e3.getText().toString();
-        int answer = Integer.parseInt(k);
-        if (answer == sum3) {
-            i3.setImageResource(R.drawable.happy);
-            score++;
+        if (k.matches("")){
+            e3.setError("This field can not be blank");
         }
         else {
-            i3.setImageResource(R.drawable.sad);
+            int answer = Integer.parseInt(k);
+            if (answer == sum3) {
+                i3.setImageResource(R.drawable.happy);
+                score++;
+            } else {
+                i3.setImageResource(R.drawable.sad);
+            }
+            t5.setVisibility(View.VISIBLE);
+            t6.setVisibility(View.VISIBLE);
+            e3.setVisibility(View.INVISIBLE);
+            b3.setVisibility(View.INVISIBLE);
+            Toast.makeText(this, "your final is " + score + "/3", Toast.LENGTH_LONG).show();
         }
-        t5.setVisibility(View.VISIBLE);
-        t6.setVisibility(View.VISIBLE);
-        e3.setVisibility(View.INVISIBLE);
-        b3.setVisibility(View.INVISIBLE);
-        Toast.makeText(this, "your final is "+score+"/3", Toast.LENGTH_LONG).show();
     }
 
     public void new_round(View view) {
@@ -137,12 +154,13 @@ public class MainActivity extends AppCompatActivity {
         t4.setVisibility(View.INVISIBLE);
         t5.setVisibility(View.INVISIBLE);
         t6.setVisibility(View.INVISIBLE);
+        b2.setVisibility(View.INVISIBLE);
+        b3.setVisibility(View.INVISIBLE);
+        e2.setVisibility(View.INVISIBLE);
+        e3.setVisibility(View.INVISIBLE);
         e1.setVisibility(View.VISIBLE);
         b1.setVisibility(View.VISIBLE);
-        e2.setVisibility(View.VISIBLE);
-        b2.setVisibility(View.VISIBLE);
-        e3.setVisibility(View.VISIBLE);
-        b3.setVisibility(View.VISIBLE);
+
 
         i1.setImageResource(0);
         i2.setImageResource(0);
@@ -152,4 +170,6 @@ public class MainActivity extends AppCompatActivity {
         e2.setText("");
         e3.setText("");
     }
+
+
 }
